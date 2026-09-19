@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="200" height="200" rx="44" fill="#070B09"/>
+  <rect x="1" y="1" width="198" height="198" rx="43" fill="none" stroke="#1F3D2E" stroke-width="2"/>
+
+  <text x="100" y="122"
+        text-anchor="middle"
+        font-family="'Space Grotesk', 'Arial', sans-serif"
+        font-weight="700"
+        font-size="62"
+        letter-spacing="-1"
+        fill="#4CEB94"
+        filter="url(#glow)">PSV</text>
+</svg>
