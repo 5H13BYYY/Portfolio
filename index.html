@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script id="MathJax-script" async src="https://jsdelivr.net"></script>
+<title>Nak — AI Student &amp; Developer</title>
+<meta name="description" content="Portfolio of Nak — AI student at AUPP, Phnom Penh. Projects, skills, and contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg" href="favicon.svg">
+</head>
+<body data-theme="dark">
+
+  <div class="grain"></div>
+
+  <header class="nav">
+    <a href="#home" class="nav__mark">PSV<span>.</span></a>
+    <nav class="nav__links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#lab">Lab</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="theme-control">
+      <span class="theme-control__label">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <span class="theme-control__label-text">Theme</span>
+      </span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+        <span class="theme-toggle__dot"></span>
+      </button>
+    </div>
+    <label class="language-control" for="languageSwitch">
+      <span class="language-control__label">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>
+        <span class="language-control__text">Language</span>
+        <img class="language-control__flag" src="https://flagcdn.com/w40/gb.png" alt="English">
+      </span>
+      <select id="languageSwitch" aria-label="Choose language">
+        <option value="en">English</option>
+        <!-- <option value="fr">Français</option> -->
+      </select>
+    </label>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="hero">
+      <canvas id="net" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__inner">
+        <div class="hero__content">
+        <p class="eyebrow">// building things for the better future</p>
+        <h1 class="hero__title">
+          Hey, I'm <span class="accent">PHAUT Sovannvatanak</span> —
+          <span id="typed" class="hero__typed"></span><span class="cursor">_</span>
+        </h1>
+        <p class="hero__sub">
+          AI student at AUPP, and English Literature student at IFL, RUPP, Phnom Penh. I build small, useful things — models, tools, and interfaces — and write about what I learn along the way.
+        </p>
+        <div class="hero__cta">
+          <a href="#lab" class="btn btn--primary">See the lab</a>
+          <a href="#credentials" class="btn btn--ghost">My Credentials</a>
+          <a href="#contact" class="btn btn--ghost">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="hero__photo-wrap">
+          <!-- Replace image.png with your own photo file whenever you are ready. -->
+          <img class="hero__photo" src="image.png" alt="PHAUT Sovannvatanak">
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true">
+        <span></span>
+        <p>scroll</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <p class="section-label">01 — About</p>
+      <div class="about__grid">
+        <div class="about__text">
+          <h2>Curious by default, deliberate by habit.</h2>
+          <p>
+            I'm currently a Sophomore and working toward a B.S. in Artificial Intelligence and B.A. in English Literature, splitting my time between coursework, side projects, and figuring out how the systems I use every day actually work under the hood. Cambodian, Khmer-English bilingual.
+          </p>
+          <p>
+            Outside of code: football, music, and travel — most of what I build ends up
+            being an excuse to combine two of those with tech.
+          </p>
+        </div>
+        <div class="about__skills">
+          <p class="mono-label">Stack &amp; tools</p>
+          <ul class="skills">
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/python/3776AB" alt="">Python</li>
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/numpy/4DABCF" alt="">NumPy</li>
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/pandas/4DABCF" alt="">Pandas</li>
+            <li><img class="skill-icon" src="https://matplotlib.org/stable/_static/logo2.svg" alt="" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB';">Matplotlib</li>
+            <li><img class="skill-icon" src="https://raw.githubusercontent.com/mwaskom/seaborn/master/doc/_static/logo-mark-darkbg.svg" alt="" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB';">Seaborn</li>
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/4169E1" alt="">PostgreSQL</li>
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/r/276DC3" alt="">R</li>
+            <li><img class="skill-icon" src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="">MS. Excel</li>
+            <li><img class="skill-icon" src="https://img.icons8.com/color/48/power-bi.png" alt="">MS. Power BI</li>
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/cplusplus/00599C" alt="">C++</li>
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/html5/E34F26" alt="">HTML</li>
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/css/1572B6" alt="">CSS</li>
+            <!-- <li><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="">JavaScript</li> -->
+            <!-- <li><img class="skill-icon" src="https://cdn.simpleicons.org/git/F05032" alt="">Git</li> -->
+            <li><img class="skill-icon" src="https://cdn.simpleicons.org/latex/008080" alt="">TeX</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB -->
+    <section id="lab" class="lab">
+      <p class="section-label">02 — Lab</p>
+      <h2 class="lab__title">Things I've built &amp; broken</h2>
+
+      <div class="lab__grid">
+        <article class="card">
+          <div class="card__index">01</div>
+          <h3>Power BI Dashboard</h3>
+          <p>Sales Analytics Dashboard built in Power BI, with interactive slicers, donut charts, and time-series trend analysis.</p>
+          <img class="center-image" src="power_bi.png" alt="Power BI Dashboard">
+          <br>
+          <a href="https://aupp-my.sharepoint.com/:u:/g/personal/2026525phaut_aupp_edu_kh/IQCc6Zf72R0DQZ0Jf-dm42HFAR6RbaKNsKcT1sWhmot_zHo?e=ErrQKH" class="card__link" target="_blank">View project →</a>
+        </article>
+        <article class="card">
+          <div class="card__index">02</div>
+          <h3>Excel Dashboard</h3>
+          <p>Interactive Excel Sales Dashboard with dynamic KPI cards, monthly trend charts, category breakdowns, rep performance, and a geographic profit map — built with slicers, pivot tables, and PivotCharts for full interactivity.</p>
+          <img class="center-image" src="excel.png" alt="Excel Dashboard">
+          <br>
+          <a href="https://1drv.ms/x/c/b4c5c8eac58ee9c9/IQCD07OjcifQSo0IxCdtBxAoAdWqmWqcKXs5dpaW0y_bS9M?e=fLxHgA" class="card__link" target="_blank">View project →</a>
+        </article>
+
+        <!-- <article class="card">
+          <div class="card__index">03</div>
+          <h3>Project Three</h3>
+          <p>Short one-line description of what this project does and why it exists.</p>
+          <a href="#" class="card__link">View project →</a>
+        </article>
+
+        <article class="card">
+          <div class="card__index">04</div>
+          <h3>Project Four</h3>
+          <p>Short one-line description of what this project does and why it exists.</p>
+          <a href="#" class="card__link">View project →</a>
+        </article>
+
+        <article class="card">
+          <div class="card__index">05</div>
+          <h3>Project Five</h3>
+          <p>Short one-line description of what this project does and why it exists.</p>
+          <a href="#" class="card__link">View project →</a>
+        </article>
+
+        <article class="card card--ghost">
+          <div class="card__index">+</div>
+          <h3>More on GitHub</h3>
+          <p>The rest of the experiments live in the repo.</p>
+          <a href="https://github.com/5H13BYYY/" class="card__link" target="_blank" rel="noopener">Visit GitHub →</a> -->
+        </article>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section id="credentials" class="credentials">
+      <p class="section-label">03 - Credentials</p>
+      <!-- <h2 class="credentials__title">Learning, one credential at a time.</h2> -->
+      <h2 class="credentials__title">Education</h2>
+      <div class="credentials__grid">
+        <article class="credential">
+          <p class="credential__type">Education</p>
+          <h3>B.S. in Artificial Intelligence</h3>
+          <p>American University of Phnom Penh (AUPP)</p>
+          <span>In progress</span>
+        </article>
+        <article class="credential">
+          <p class="credential__type">Education</p>
+          <h3>B.S. in Artificial Intelligence</h3>
+          <p>American University of Phnom Penh (AUPP)</p>
+          <span>In progress</span>
+        </article>
+        <article class="credential">
+          <p class="credential__type">Education</p>
+          <h3>B.A. in English Literature</h3>
+          <p>Institute of Foreign Languages, RUPP</p>
+          <span>In progress</span>
+        </article>
+      </div>
+      <br>
+      <!-- <hr>
+      <br>
+      <h2 class="credentials__title">Certificates</h2>
+      <div class="credentials__grid">  
+        <article class="credential credential--empty">
+          <p class="credential__type">Certificate</p>
+          <h3>Your next credential</h3>
+          <p>Add a course, certification, award, or achievement here.</p>
+          <span>Coming soon</span>
+        </article>
+      </div> -->
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <p class="section-label">04 — Contact</p>
+      <h2>Let's talk.</h2>
+      <p class="contact__sub">
+        Open to internships, collabs, and interesting problems. Reach out — I reply fast.
+      </p>
+      <!-- <a href="mailto:sovannvatanakphaut168@gmail.com" class="contact__email">sovannvatanakphaut168@gmail.com</a> -->
+      <div class="contact__links">
+        <a href="mailto:sovannvatanakphaut168@gmail.com" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5h17v13h-17zM4 6l8 6 8-6"></path></svg>Email</a>
+        <a href="https://t.me/SH3LBYYYY" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.6 18.3 19c-.2 1-.8 1.2-1.6.7l-4.5-3.3-2.2 2.1c-.2.2-.5.5-.9.5l.3-4.6 8.4-7.6c.4-.3-.1-.5-.6-.2L6.8 13.2l-4.4-1.4c-1-.3-1-1 .2-1.4L19.8 4c.8-.3 1.6.2 1.6.6Z"></path></svg>Telegram</a>
+        <a href="https://github.com/5H13BYYY/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1.1A9.7 9.7 0 0 1 12 6.8c.9 0 1.7.1 2.5.3 2-1.4 2.8-1.1 2.8-1.1.5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"></path></svg>GitHub</a>
+        <a href="https://www.linkedin.com/in/sovannvatanak-p-aa9743400" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.1 3.5A2.1 2.1 0 1 1 5 7.7a2.1 2.1 0 0 1 .1-4.2ZM3.3 9h3.6v11.5H3.3V9Zm5.8 0h3.4v1.6h.1c.5-.9 1.6-2 3.8-2 4 0 4.7 2.6 4.7 6v6.9h-3.6v-6.1c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3v6.2H9.1V9Z"></path></svg>LinkedIn</a>
+        <!-- <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a> -->
+      </div>
+      <br>
+      <hr>
+      <br>
+      <h2>Curriculum Vitae</h2>
+      <p class="contact__sub">
+        Here is my CV. Please click download <u><a href="https://drive.google.com/file/d/1-ZGmrdQDsKQ_AMPa0McK0QvCcrYEqC4V/view?usp=sharing", target="_blank">here</a></u>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Nak. All Right Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
