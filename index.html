@@ -18,7 +18,10 @@
 
   <header class="nav">
     <a href="#home" class="nav__mark">PSV<span>.</span></a>
-    <nav class="nav__links">
+    <button class="nav__toggle" type="button" aria-label="Toggle navigation" aria-controls="primaryNavigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav__links" id="primaryNavigation" aria-label="Main navigation">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#lab">Lab</a>
@@ -98,23 +101,50 @@
         </div>
         <div class="about__skills">
           <p class="mono-label">Stack &amp; tools</p>
-          <ul class="skills">
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/python/3776AB" alt="">Python</li>
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/numpy/4DABCF" alt="">NumPy</li>
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/pandas/4DABCF" alt="">Pandas</li>
-            <li><img class="skill-icon" src="https://matplotlib.org/stable/_static/logo2.svg" alt="" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB';">Matplotlib</li>
-            <li><img class="skill-icon" src="https://raw.githubusercontent.com/mwaskom/seaborn/master/doc/_static/logo-mark-darkbg.svg" alt="" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB';">Seaborn</li>
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/4169E1" alt="">PostgreSQL</li>
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/r/276DC3" alt="">R</li>
-            <li><img class="skill-icon" src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="">MS. Excel</li>
-            <li><img class="skill-icon" src="https://img.icons8.com/color/48/power-bi.png" alt="">MS. Power BI</li>
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/cplusplus/00599C" alt="">C++</li>
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/html5/E34F26" alt="">HTML</li>
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/css/1572B6" alt="">CSS</li>
-            <!-- <li><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="">JavaScript</li> -->
-            <!-- <li><img class="skill-icon" src="https://cdn.simpleicons.org/git/F05032" alt="">Git</li> -->
-            <li><img class="skill-icon" src="https://cdn.simpleicons.org/latex/008080" alt="">TeX</li>
-          </ul>
+          <div class="stack-groups">
+            <div class="stack-group">
+              <p class="stack-label">Languages</p>
+              <ul class="skills">
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/python/3776AB" alt="">Python</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/cplusplus/00599C" alt="">C++</li>
+                <li><img class="skill-icon" src="https://img.icons8.com/color/48/java-coffee-cup-logo--v1.png" alt="Java" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/java/007396';">Java</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/html5/E34F26" alt="">HTML</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/css/1572B6" alt="">CSS</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/latex/008080" alt="">TeX</li>
+              </ul>
+            </div>
+
+            <div class="stack-group">
+              <p class="stack-label">Data &amp; AI</p>
+              <ul class="skills">
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/numpy/4DABCF" alt="">NumPy</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/pandas/4DABCF" alt="">Pandas</li>
+                <li><img class="skill-icon" src="https://matplotlib.org/stable/_static/logo2.svg" alt="" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB';">Matplotlib</li>
+                <li><img class="skill-icon" src="https://raw.githubusercontent.com/mwaskom/seaborn/master/doc/_static/logo-mark-darkbg.svg" alt="" onerror="this.onerror=null;this.src='https://cdn.simpleicons.org/python/3776AB';">Seaborn</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/jupyter/F37626" alt="">Jupyter Notebook</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/4169E1" alt="">PostgreSQL</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/r/276DC3" alt="">R</li>
+              </ul>
+            </div>
+
+            <div class="stack-group">
+              <p class="stack-label">Analytics</p>
+              <ul class="skills">
+                <li><img class="skill-icon" src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="">MS. Excel</li>
+                <li><img class="skill-icon" src="https://img.icons8.com/color/48/power-bi.png" alt="">MS. Power BI</li>
+              </ul>
+            </div>
+
+            <div class="stack-group">
+              <p class="stack-label">Tools &amp; Deploy</p>
+              <ul class="skills">
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/github/FFFFFF" alt="">GitHub</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/docker/2496ED" alt="">Docker</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/vercel/FFFFFF" alt="">Vercel</li>
+                <li><img class="skill-icon" src="https://cdn.simpleicons.org/git/F05032" alt="">Git</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -122,33 +152,39 @@
     <!-- LAB -->
     <section id="lab" class="lab">
       <p class="section-label">02 — Lab</p>
-      <h2 class="lab__title">Things I've built &amp; broken</h2>
+      <h2 class="lab__title">Things I&apos;ve built &amp; broken</h2>
+
+      <div class="project-filters" role="group" aria-label="Filter projects">
+        <button class="project-filter is-active" type="button" data-filter="all" aria-pressed="true">All projects</button>
+        <button class="project-filter" type="button" data-filter="analytics" aria-pressed="false">Analytics</button>
+        <button class="project-filter" type="button" data-filter="machine-learning" aria-pressed="false">Machine Learning</button>
+      </div>
 
       <div class="lab__grid">
-        <article class="card">
+        <article class="card" data-category="analytics">
           <div class="card__index">01</div>
           <h3>Power BI Dashboard</h3>
           <p>Sales Analytics Dashboard built in Power BI, with interactive slicers, donut charts, and time-series trend analysis.</p>
-          <img class="center-image" src="power_bi.png" alt="Power BI Dashboard">
+          <button class="project-image" type="button" aria-label="Enlarge Power BI Dashboard screenshot"><img class="center-image" src="power_bi.png" alt="Power BI Dashboard"></button>
           <br>
-          <a href="https://aupp-my.sharepoint.com/:u:/g/personal/2026525phaut_aupp_edu_kh/IQCc6Zf72R0DQZ0Jf-dm42HFAR6RbaKNsKcT1sWhmot_zHo?e=ErrQKH" class="card__link" target="_blank">View project →</a>
+          <a href="https://aupp-my.sharepoint.com/:u:/g/personal/2026525phaut_aupp_edu_kh/IQCc6Zf72R0DQZ0Jf-dm42HFAR6RbaKNsKcT1sWhmot_zHo?e=ErrQKH" class="card__link" target="_blank" rel="noopener">View project →</a>
         </article>
-        <article class="card">
+        <article class="card" data-category="analytics">
           <div class="card__index">02</div>
           <h3>Excel Dashboard</h3>
           <p>Interactive Excel Sales Dashboard with dynamic KPI cards, monthly trend charts, category breakdowns, rep performance, and a geographic profit map — built with slicers, pivot tables, and PivotCharts for full interactivity.</p>
-          <img class="center-image" src="excel.png" alt="Excel Dashboard">
+          <button class="project-image" type="button" aria-label="Enlarge Excel Dashboard screenshot"><img class="center-image" src="excel.png" alt="Excel Dashboard"></button>
           <br>
-          <a href="https://1drv.ms/x/c/b4c5c8eac58ee9c9/IQCD07OjcifQSo0IxCdtBxAoAdWqmWqcKXs5dpaW0y_bS9M?e=fLxHgA" class="card__link" target="_blank">View project →</a>
+          <a href="https://1drv.ms/x/c/b4c5c8eac58ee9c9/IQCD07OjcifQSo0IxCdtBxAoAdWqmWqcKXs5dpaW0y_bS9M?e=fLxHgA" class="card__link" target="_blank" rel="noopener">View project →</a>
         </article>
 
-        <article class="card">
+        <article class="card" data-category="machine-learning">
           <div class="card__index">03</div>
           <h3>Diabetes Risk Predictor</h3>
           <p>Built an interactive R Shiny web app that predicts diabetes risk from patient health metrics using a random forest model, with EDA-driven feature analysis and a tuned decision threshold for clinical use.</p>
-          <img class="center-image" src="r.png" alt="R Shiny Web App">
+          <button class="project-image" type="button" aria-label="Enlarge Diabetes Risk Predictor screenshot"><img class="center-image" src="r.png" alt="R Shiny Web App"></button>
           <br>
-          <a href="https://psvatanak.shinyapps.io/Diabetes_Risk_Predictor/" class="card__link" target="_blank">View project →</a>
+          <a href="https://psvatanak.shinyapps.io/Diabetes_Risk_Predictor/" class="card__link" target="_blank" rel="noopener">View project →</a>
         </article>
 
         <!-- <article class="card">
@@ -176,7 +212,7 @@
 
 <!-- CREDENTIALS -->
 <section id="credentials" class="credentials">
-  <p class="section-label">03 - Credentials</p>
+  <p class="section-label">03 — Credentials</p>
   <h2 class="credentials__title">Learning, one credential at a time.</h2>
 
   <div class="credentials__grid">
@@ -228,10 +264,17 @@
       <br>
       <h2>Curriculum Vitae</h2>
       <p class="contact__sub">
-        Here is my CV. Please click download <u><a href="https://drive.google.com/file/d/1-ZGmrdQDsKQ_AMPa0McK0QvCcrYEqC4V/view?usp=sharing", target="_blank">here</a></u>.
+        Here is my CV — <a class="cv-link" href="https://drive.google.com/file/d/1-ZGmrdQDsKQ_AMPa0McK0QvCcrYEqC4V/view?usp=sharing" target="_blank" rel="noopener">view and download <span aria-hidden="true">↗</span></a>.
       </p>
     </section>
   </main>
+
+  <dialog class="image-lightbox" aria-label="Project screenshot preview">
+    <button class="lightbox__close" type="button" aria-label="Close image preview">&times;</button>
+    <img src="" alt="">
+    <p class="lightbox__caption"></p>
+  </dialog>
+  <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
 
   <footer class="footer">
     <p>© <span id="year"></span> Nak. All Right Reserved.</p>

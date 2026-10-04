@@ -4,6 +4,34 @@ const themeToggle = document.getElementById('themeToggle');
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) body.setAttribute('data-theme', savedTheme);
 
+const siteNav = document.querySelector('.nav');
+const mobileNavToggle = document.querySelector('.nav__toggle');
+const primaryNavigation = document.getElementById('primaryNavigation');
+function closeMobileNavigation(){
+  siteNav.classList.remove('nav--open');
+  mobileNavToggle.setAttribute('aria-expanded', 'false');
+}
+mobileNavToggle.addEventListener('click', () => {
+  const isOpen = mobileNavToggle.getAttribute('aria-expanded') !== 'true';
+  siteNav.classList.toggle('nav--open', isOpen);
+  mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
+});
+primaryNavigation.addEventListener('click', event => {
+  if (event.target.closest('a')) closeMobileNavigation();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && mobileNavToggle.getAttribute('aria-expanded') === 'true'){
+    closeMobileNavigation();
+    mobileNavToggle.focus();
+  }
+});
+document.addEventListener('click', event => {
+  if (!siteNav.contains(event.target)) closeMobileNavigation();
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 860) closeMobileNavigation();
+});
+
 themeToggle.addEventListener('click', () => {
   const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   body.setAttribute('data-theme', next);
@@ -185,3 +213,68 @@ if (canvas){
   draw();
   window.addEventListener('resize', () => { resize(); initParticles(); });
 }
+
+// ---------- Scroll reveals and active section navigation ----------
+const revealTargets = document.querySelectorAll('section:not(.hero), .card, .credential');
+if ('IntersectionObserver' in window && !reduceMotion){
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealTargets.forEach(target => target.classList.add('reveal'));
+  revealTargets.forEach(target => revealObserver.observe(target));
+}
+
+const sectionLinks = [...document.querySelectorAll('.nav__links a')];
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    sectionLinks.forEach(link => {
+      const active = link.getAttribute('href') === `#${entry.target.id}`;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  });
+}, { rootMargin: '-35% 0px -55% 0px' });
+document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
+
+// ---------- Project filters ----------
+const projectFilters = document.querySelectorAll('.project-filter');
+projectFilters.forEach(button => button.addEventListener('click', () => {
+  const filter = button.dataset.filter;
+  projectFilters.forEach(item => {
+    const active = item === button;
+    item.classList.toggle('is-active', active);
+    item.setAttribute('aria-pressed', String(active));
+  });
+  document.querySelectorAll('.lab__grid > .card').forEach(card => {
+    card.classList.toggle('is-filtered-out', filter !== 'all' && card.dataset.category !== filter);
+  });
+}));
+
+// ---------- Project image lightbox ----------
+const lightbox = document.querySelector('.image-lightbox');
+const lightboxImage = lightbox.querySelector('img');
+const lightboxCaption = lightbox.querySelector('.lightbox__caption');
+document.querySelectorAll('.project-image').forEach(button => button.addEventListener('click', () => {
+  const image = button.querySelector('img');
+  lightboxImage.src = image.src;
+  lightboxImage.alt = image.alt;
+  lightboxCaption.textContent = image.alt;
+  lightbox.showModal();
+}));
+lightbox.querySelector('.lightbox__close').addEventListener('click', () => lightbox.close());
+lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
+
+// ---------- Back to top ----------
+const backToTop = document.querySelector('.back-to-top');
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('is-visible', window.scrollY > 500);
+  siteNav.classList.toggle('is-scrolled', window.scrollY > 24);
+}, { passive:true });
+backToTop.addEventListener('click', () => window.scrollTo({ top:0, behavior: reduceMotion ? 'auto' : 'smooth' }));
