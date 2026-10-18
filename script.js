@@ -7,14 +7,19 @@ if (savedTheme) body.setAttribute('data-theme', savedTheme);
 const siteNav = document.querySelector('.nav');
 const mobileNavToggle = document.querySelector('.nav__toggle');
 const primaryNavigation = document.getElementById('primaryNavigation');
+let previousScrollY = window.scrollY;
 function closeMobileNavigation(){
   siteNav.classList.remove('nav--open');
+  document.body.classList.remove('nav-menu-open');
   mobileNavToggle.setAttribute('aria-expanded', 'false');
+  mobileNavToggle.setAttribute('aria-label', 'Open navigation');
 }
 mobileNavToggle.addEventListener('click', () => {
   const isOpen = mobileNavToggle.getAttribute('aria-expanded') !== 'true';
   siteNav.classList.toggle('nav--open', isOpen);
+  document.body.classList.toggle('nav-menu-open', isOpen);
   mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
+  mobileNavToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
 });
 primaryNavigation.addEventListener('click', event => {
   if (event.target.closest('a')) closeMobileNavigation();
@@ -29,7 +34,7 @@ document.addEventListener('click', event => {
   if (!siteNav.contains(event.target)) closeMobileNavigation();
 });
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 860) closeMobileNavigation();
+  closeMobileNavigation();
 });
 
 themeToggle.addEventListener('click', () => {
@@ -38,78 +43,6 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', next);
 });
 
-// ---------- Language switch ----------
-const languageSwitch = document.getElementById('languageSwitch');
-const translations = {
-  en: {
-    nav: ['Home', 'About', 'Lab', 'Credentials', 'Contact'], theme: 'Theme', language: 'Language',
-    eyebrow: '// building things for the better future', greeting: "Hey, I'm", hero: 'AI student at AUPP, and English Literature student at IFL, RUPP, Phnom Penh. I build small, useful things — models, tools, and interfaces — and write about what I learn along the way.',
-    buttons: ['See the lab', 'My Credentials', 'Get in touch'], scroll: 'scroll', aboutLabel: '01 — About', aboutTitle: 'Curious by default, deliberate by habit.',
-    about: ["I'm currently a Sophomore and working toward a B.S. in Artificial Intelligence and B.A. in English Literature, splitting my time between coursework, side projects, and figuring out how the systems I use every day actually work under the hood. Cambodian, Khmer-English bilingual, friendly-beginner French, and always up for a good technical rabbit hole.", 'Outside of code: football, music, and travel — most of what I build ends up being an excuse to combine two of those with tech.'],
-    tools: 'Stack & tools', labLabel: '02 — Lab', labTitle: "Things I've built & broken", credentialsLabel: '03 - Credentials', credentialsTitle: 'Learning, one credential at a time.', education: 'Education', certificates: 'Certificates', contactLabel: '04 — Contact', contactTitle: "Let's talk.", contact: 'Open to internships, collabs, and interesting problems. Reach out — I reply fast.', cv: 'Curriculum Vitae', cvText: 'Here is my CV. Please click download here.'
-  },
-  fr: {
-    nav: ['Accueil', 'À propos', 'Projets', 'Diplômes', 'Contact'], theme: 'Thème', language: 'Langue',
-    eyebrow: '// créer pour un avenir meilleur', greeting: 'Bonjour, je suis', hero: "Étudiant en IA à l'AUPP et en littérature anglaise à l'IFL, RUPP, Phnom Penh. Je crée des projets utiles : modèles, outils et interfaces, et je partage ce que j'apprends.",
-    buttons: ['Voir les projets', 'Mes diplômes', 'Me contacter'], scroll: 'défiler', aboutLabel: '01 — À propos', aboutTitle: 'Curieux par défaut, réfléchi par habitude.',
-    about: ["Je suis actuellement en deuxième année et je prépare une licence en intelligence artificielle et une licence en littérature anglaise. Je partage mon temps entre les cours, les projets personnels et la compréhension des systèmes que j'utilise chaque jour.", 'En dehors du code : football, musique et voyages.'],
-    tools: 'Compétences et outils', labLabel: '02 — Projets', labTitle: "Ce que j'ai créé et expérimenté", credentialsLabel: '03 - Diplômes', credentialsTitle: 'Apprendre, un diplôme à la fois.', education: 'Formation', certificates: 'Certificats', contactLabel: '04 — Contact', contactTitle: 'Parlons-en.', contact: 'Ouvert aux stages, collaborations et problèmes intéressants. Écrivez-moi.', cv: 'Curriculum Vitae', cvText: 'Voici mon CV. Cliquez ici pour le télécharger.'
-  }
-};
-const typedPhrases = {
-  en: ['an AI student.', 'a builder.', 'a lifelong learner.', 'probably debugging.'],
-  fr: ["un étudiant en IA.", 'un créateur.', 'un apprenant pour la vie.', 'probablement en train de déboguer.']
-};
-
-function setText(selector, value, index = 0) {
-  const element = document.querySelectorAll(selector)[index];
-  if (element) element.textContent = value;
-}
-
-function setHeroGreeting(value) {
-  const title = document.querySelector('.hero__title');
-  const textNode = [...title.childNodes].find(node => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim());
-  if (textNode) textNode.nodeValue = `\n          ${value} `;
-}
-
-function setLanguage(language) {
-  const t = translations[language];
-  document.documentElement.lang = language === 'km' ? 'km' : language;
-  document.documentElement.style.fontFamily = language === 'km' ? "'Noto Sans Khmer', var(--font-body)" : '';
-  document.querySelectorAll('.nav__links a').forEach((link, index) => link.textContent = t.nav[index]);
-  setText('.theme-control__label-text', t.theme);
-  setText('.language-control__text', t.language);
-  const languageFlag = document.querySelector('.language-control__flag');
-  if (languageFlag) {
-    const isFrench = language === 'fr';
-    languageFlag.src = isFrench ? 'https://flagcdn.com/w40/fr.png' : 'https://flagcdn.com/w40/gb.png';
-    languageFlag.alt = isFrench ? 'Français' : 'English';
-  }
-  setText('.eyebrow', t.eyebrow);
-  setHeroGreeting(t.greeting);
-  setText('.hero__sub', t.hero);
-  document.querySelectorAll('.hero__cta a').forEach((button, index) => button.textContent = t.buttons[index]);
-  setText('.hero__scroll p', t.scroll);
-  setText('#about .section-label', t.aboutLabel);
-  setText('.about h2', t.aboutTitle);
-  document.querySelectorAll('.about__text p').forEach((paragraph, index) => paragraph.textContent = t.about[index]);
-  setText('.mono-label', t.tools);
-  setText('#lab .section-label', t.labLabel);
-  setText('.lab__title', t.labTitle);
-  setText('#credentials .section-label', t.credentialsLabel);
-  document.querySelectorAll('.credentials__title').forEach((title, index) => title.textContent = index === 0 ? t.credentialsTitle : index === 1 ? t.education : t.certificates);
-  document.querySelectorAll('.credential__type').forEach((type, index) => type.textContent = index < 2 ? t.education : t.certificates.slice(0, -1));
-  setText('#contact .section-label', t.contactLabel);
-  setText('.contact h2', t.contactTitle, 0);
-  setText('.contact__sub', t.contact, 0);
-  setText('.contact h2', t.cv, 1);
-  words = typedPhrases[language];
-  wordIndex = 0;
-  charIndex = 0;
-  deleting = false;
-  localStorage.setItem('language', language);
-}
-
 // ---------- Footer year ----------
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -117,11 +50,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 let words = ['an AI student.', 'a builder.', 'a lifelong learner.', 'probably debugging.'];
 const typedEl = document.getElementById('typed');
 let wordIndex = 0, charIndex = 0, deleting = false;
-
-const savedLanguage = ['en', 'fr'].includes(localStorage.getItem('language')) ? localStorage.getItem('language') : 'en';
-languageSwitch.value = savedLanguage;
-setLanguage(savedLanguage);
-languageSwitch.addEventListener('change', event => setLanguage(event.target.value));
 
 function typeLoop(){
   const current = words[wordIndex];
@@ -229,7 +157,7 @@ if ('IntersectionObserver' in window && !reduceMotion){
   revealTargets.forEach(target => revealObserver.observe(target));
 }
 
-const sectionLinks = [...document.querySelectorAll('.nav__links a')];
+const sectionLinks = [...document.querySelectorAll('.nav__links a, .nav__contact')];
 const sectionObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -257,6 +185,14 @@ projectFilters.forEach(button => button.addEventListener('click', () => {
   });
 }));
 
+const featuredProjectLink = document.querySelector('.hero__featured');
+const featuredProjectDetails = document.querySelector('#project-diabetes .card__details');
+featuredProjectLink.addEventListener('click', () => {
+  const allProjectsFilter = document.querySelector('.project-filter[data-filter="all"]');
+  if (allProjectsFilter) allProjectsFilter.click();
+  if (featuredProjectDetails) featuredProjectDetails.open = true;
+});
+
 // ---------- Project image lightbox ----------
 const lightbox = document.querySelector('.image-lightbox');
 const lightboxImage = lightbox.querySelector('img');
@@ -271,10 +207,56 @@ document.querySelectorAll('.project-image').forEach(button => button.addEventLis
 lightbox.querySelector('.lightbox__close').addEventListener('click', () => lightbox.close());
 lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
 
+// ---------- Copy email ----------
+const copyEmailButton = document.querySelector('.copy-email');
+let copyEmailResetTimer;
+copyEmailButton.addEventListener('click', async () => {
+  const email = copyEmailButton.dataset.email;
+  try {
+    if (navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(email);
+    } else {
+      const temporaryInput = document.createElement('textarea');
+      temporaryInput.value = email;
+      temporaryInput.setAttribute('readonly', '');
+      temporaryInput.style.position = 'fixed';
+      temporaryInput.style.opacity = '0';
+      document.body.appendChild(temporaryInput);
+      let copied;
+      try {
+        temporaryInput.select();
+        copied = document.execCommand('copy');
+      } finally {
+        temporaryInput.remove();
+      }
+      if (!copied) throw new Error('Clipboard copy failed');
+    }
+    copyEmailButton.textContent = 'Copied!';
+  } catch {
+    copyEmailButton.textContent = 'Copy failed';
+  }
+  clearTimeout(copyEmailResetTimer);
+  copyEmailResetTimer = setTimeout(() => { copyEmailButton.textContent = 'Copy email'; }, 1800);
+});
+
 // ---------- Back to top ----------
 const backToTop = document.querySelector('.back-to-top');
 window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  const scrollDelta = currentScrollY - previousScrollY;
+  if (currentScrollY <= 20){
+    siteNav.classList.remove('is-hidden');
+  } else if (Math.abs(scrollDelta) >= 6){
+    if (siteNav.classList.contains('nav--open')){
+      siteNav.classList.remove('is-hidden');
+    } else {
+      siteNav.classList.toggle('is-hidden', scrollDelta > 0);
+    }
+    previousScrollY = currentScrollY;
+  }
   backToTop.classList.toggle('is-visible', window.scrollY > 500);
-  siteNav.classList.toggle('is-scrolled', window.scrollY > 24);
+  siteNav.classList.toggle('is-scrolled', currentScrollY > 60);
+  if (currentScrollY <= 20) previousScrollY = currentScrollY;
 }, { passive:true });
+siteNav.classList.toggle('is-scrolled', window.scrollY > 60);
 backToTop.addEventListener('click', () => window.scrollTo({ top:0, behavior: reduceMotion ? 'auto' : 'smooth' }));
